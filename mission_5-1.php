@@ -1,9 +1,10 @@
 <?php
 //とりあえずデータベースと接続
-	$dsn = 'データベース名';
+$dsn = 'データベース名';
 	$user = 'ユーザー名';
 	$password = 'パスワード';
 	$pdo = new PDO($dsn, $user, $password, array(PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING));
+
 ?>
 
 <?php
@@ -41,35 +42,60 @@ $sql = 'SELECT * FROM thread_1'; //thread_1からの選択
 <html>
  <head>
   <title>mission_5-1</title>
+ <style>
+ p {
+	color: #666666;
+	width: 80%;
+	}
+ </style>
  </head>
  <body>
- <h1>mission_5-1</h1>
-   <p>mission_3と同じ機能は付けられたと思います！問題があったら教えてください！</p>
-<hr>
+ <h1>掲示板</h1>
+   <p>気軽にコメントお願いします！</p>
+
 <form method="POST" action="">
 
 <!-- 以下投稿フォーム内の name, comment, password -->
-	お名前：<input type="text" name="name" 
+ <fieldset>	
+	<legend>投稿フォーム</legend>
+ <p>
+	お名前：<br>
+	<input type="text" name="name" placeholder="山田太郎"
 	value = "<?php if(!empty($display_name)) echo $display_name ?>"><br>
-	コメント：<input type="text" name="comment"
+	コメント：<br>
+	<input type="text" name="comment" placeholder="Hello World"
 	value = "<?php if(!empty($display_comment)) echo $display_comment ?>"><br>
-	パスワード：<input type = "password" name="password"
+	パスワード：<br>
+	<input type = "password" name="password" placeholder="password"
 	value = "<?php if(!empty($display_pass)) echo $display_pass ?>"><br>
 <!-- hiddenで入力された edit_num -->	
 	<input type ="hidden" name="edit_num" 
 	value ="<?php if (!empty($display_num)) echo $display_num ?>">	
 	<input type="submit" name="submit" value="送信"><br>
-
+ </p>
+ </fieldset>
 <!-- 以下投稿フォーム内の delete, del_pass -->	
-	削除対象番号:<input type="text" name="delete"><br>
-	パスワード：<input type = "password" name = "del_pass"><br>
+ <fieldset>
+	<legend>削除フォーム</legend>
+ <p>
+	削除対象番号:<br>
+	<input type="number" name="delete" placeholder = "26"><br>
+	パスワード：<br>
+	<input type = "password" name = "del_pass" placeholder ="password"><br>
 	<input type="submit" name="submit2" value="削除"><br>
-
+ </p>
+ </fieldset>
 <!-- 以下投稿フォーム内の edit, edi_pass -->	
-	編集対象番号:<input type="text" name="edit"><br>
-	パスワード：<input type = "password" name = "edi_pass"><br>
+ <fieldset>
+	<legend>編集フォーム</legend>
+ <p>
+	編集対象番号:<br>
+	<input type="number" name="edit" placeholder ="26"><br>
+	パスワード：<br>
+	<input type = "password" name = "edi_pass" placeholder ="password"><br>
 	<input type="submit" name="submit3" value="編集"><br>
-
+</p>
+ </fieldset>
 <hr>	
 </form>
  </body>
